@@ -1,22 +1,22 @@
-Hello everybody, this README is for guide you to ricreate this project your own without downloading it.
-This project was created by Dario Ferrarotti for learning the basicis of J2EE with some of his framework.
-I'm going to describe now the main step I followed for help him to the build:
+Hello everybody, this README is to guide you to ricreate the project on your own without downloading it.
+This project was created by Dario Ferrarotti to learn the basicis of J2EE with some of his frameworks.
+I'm going to describe now the main step I followed to help him do the build:
 
 1 - First of all the build of the DataBase.
 	The requirements of the FilmRental was in the main README file so see it ;)
 
 2 - Build the Hibernate mapping and configuration with Eclipse ide.
-	The intern need to do the configuration file and build the POJO class with the table mapping 
-	annotation (use the annotation not the xml way). When it's done create a simple main class for call 
-	all the DAO methods and print the data on the console for letting him to see all the work done 
-	actually work well. Remember the @Override toString method on the model class, so him can easly call
-	system.out.print(user); and the object stamp himself well. For the database connection, let the intern
-	doing some research for the DataSource pattern and then create it on the TomCat. In this way it will be a
+	The intern needs to write the configuration file and build the POJO classes with the table mapping 
+	annotations (use the annotations, not the xml way). When it's done create a simple main class to call 
+	all the DAO methods and print the data on the console to let him see that all the work done 
+	actually works well. Remember the @Override toString method on the model class, so he can easly call
+	system.out.print(user) and the object stamp himself easily. For the database connection, let the intern
+	do some research for the DataSource pattern and then create it on the TomCat server. In this way it will be a
 	clean nice project.
 
-3 - Create the Spring layer for use all the data from the web, and build the true website.
-	In this step the inter need to see the Spring configuration file and annotation, see where to put it 
-	and create the jsp file and Spring controller so he can configure the TomCat server, run on it the project
+3 - Create the Spring layer to retrive the data from the web, and build the true website.
+	In this step the intern needs to see the Spring configuration file and annotation, see where to put it 
+	and create the jsp file and Spring controller so he can configure the TomCat server, run the project on it
 	and use it.
 	
 	
@@ -25,7 +25,7 @@ In the Model create all the POJO class of the database mapping and in the DAO al
 for access the DataBase: remebmer, all the DAO class need to return only a Model or basic 
 class (string, int, boolean, ... nothing!). Remember the KISS rule ;)
 
-In the Business Logic package put all the clas for the logic of the application, the BL class need to return 
+In the Business Logic package put all the classes for the logic of the application, the BL class needs to return the
 behavior for the controller and use the class from the DAO layer.
 
 In the Control simply put the flow of the website and the logic for invoking the BL.
