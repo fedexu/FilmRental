@@ -1,0 +1,25 @@
+The goal of this migration was done to facilitate the next step which will be to add an AXIS2 web service. 
+
+In view of this change it is also necessary to downgrade Eclipse's Dynamic Web Project version from 3.0 to 2.5. 
+
+NOTE THAT: this project is a maven project so all the web-application (WEB-INF and META-INF folders) files will be listed under /src/main/webapp, however eclipse defaults to /WebContent when searching for Dyanimc Web Projects web-application files (do not create or populate this folder). This means that as long as you don't touch the project's facet for the Dynamic Web Project it will work, but If you end un changing it (activating and deactivating it counts too) while a WebContent folder is presente you will have to move all the files web-application there.
+TL;DR: DONT CHANGE the Dynamic Web Project facet, unless you know what you are doing (and you are not publishing to this repo ;) )
+
+NOTE THAT: to compensate all the downgrading we decided to introduce the upgrade from Hibernate 4 to Hibernate 5, old JAVA BASED configuration will not work with this pom.xml.
+
+In order to migrate from JAVA Based configuration to an xml configuration the package in org.filmrental.spring.config is dropped
+since it only contains all the JAVA Based configuration classes.
+
+Now all the configuration will be performed by three files:
+  - web.xml : which contains the mapping for the dispatcher servlet (once performed by our SpringWebAppInitializer.java class)
+  - spring-web-servlet.xml : that contains all the spring beans definitions, including hibernate's transaction manager and sesssion    factory (once performed by our ApplicationContextConfig.java class)
+  
+SIDE NOTE: An important reflection must be done on the configuration of hibernate's Transaction Manager and Session Factory. This two components work in synergy to allow the spring environnement to talk to the DataStore. The Transaction Manager, used through the tag @Transactional, provides atomicity of the interaction with the datastore, while the Session Factory delivers the reference to the instance of the persistent entity that rapresents the datastore itself. There is only one session active whose reference is obtained through sessionFactory.getCurrentSession() by each DAO.
+In Hibernate 5 the classes of these two componets are:
+ - org.springframework.orm.hibernate5.LocalSessionFactoryBean (even for annotation driven mapping of the classes you dont have to specify hibernate4.annotation.AnnotationSessionFactoryBean anymore)
+ - org.springframework.orm.hibernate5.HibernateTransactionManager
+You will find those configured in spring-web-servlet.xml file.
+
+Happy coding.
+
+Dario Ferrarotti
