@@ -12,16 +12,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.filmrental.model.Rents;
 
-@Repository
 public class RentsDaoImpl implements RentsDao{
 	
-	@Autowired SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	public RentsDaoImpl() { 
     }
