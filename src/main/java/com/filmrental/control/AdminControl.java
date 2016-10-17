@@ -16,6 +16,7 @@ public class AdminControl {
 	
 	@Autowired private AdminBl adminBl;
 	
+	/* Maps the requests to view the administrator homepage*/
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView displayAdminView(){
 		if(username.getUsername() == null) return new ModelAndView("redirect:/login");
@@ -23,12 +24,27 @@ public class AdminControl {
 		return m;
 	}
 	
+	/* Maps the request to add a new film to the db*/
 	@RequestMapping(value = "/addToCollection", method = RequestMethod.POST)
 	public String addToCollection(String filmTitle, int quantity){
 		if(username.getUsername() == null) return "redirect:/login";
-		System.out.println(filmTitle);
 		adminBl.addToCollection(filmTitle, quantity);
-		System.out.println(filmTitle);
+		return "redirect:/login/admin/view";
+	}
+	
+	/* Maps the request to add a new film to the db from the list of films
+	 * proposed by the users or provided by the */
+	@RequestMapping(value = "/addFromRequests", method = RequestMethod.POST)
+	public String addFromRequests(int filmId, int quantity){
+		if(username.getUsername() == null) return "redirect:/login";
+		adminBl.addFromRequests(filmId, quantity);
+		return "redirect:/login/admin/view";
+	}
+	
+	@RequestMapping(value = "/addFromProvided", method = RequestMethod.POST)
+	public String addFromProvided(int filmId, int quantity, int maxCopies){
+		if(username.getUsername() == null) return "redirect:/login";
+		if(quantity <= maxCopies) adminBl.addFromRequests(filmId, quantity);
 		return "redirect:/login/admin/view";
 	}
 }

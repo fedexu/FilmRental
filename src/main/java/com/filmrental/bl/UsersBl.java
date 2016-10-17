@@ -39,12 +39,12 @@ public class UsersBl {
 		
 	}
 	
-	/* Tries to rent a film*/
+	/* Invokes the dao to try renting a film*/
 	public void rentFilm(int filmId){
 		rentsDao.rentFilm(filmId, userSession.getId());
 	}
 
-
+	/*Invokes the dao to insert a new film request*/
 	public void addFilmRequest(String filmTitle) {
 		filmsDao.addFilm(filmTitle, 0, 1, false); //TODO parameter
 	}

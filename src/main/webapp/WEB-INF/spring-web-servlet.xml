@@ -14,11 +14,27 @@
         http://www.springframework.org/schema/tx 
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
+<!-- Specify the resource folder location, that I want to use annotation in Spring MVC components -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:annotation-driven />
 	
+<!-- Where I can find the classes to scan for annotations -->
 	<context:component-scan base-package="com.filmrental" />
 	
+<!-- Configure spring to give a hook to axis2 without a ServletContext -->
+	<bean id="applicationContext" class="org.apache.axis2.extensions.spring.receivers.ApplicationContextHolder" />
+	
+<!-- Axis2 Web Service, but to Spring, its just another bean that has dependencies -->
+	<bean id="externalProviderService" class="com.filmrental.services.ExternalProviderService">
+		<property name="myBean" ref="myBean" />
+	</bean>
+
+<!-- just another bean / interface with a wired implementation, that's injected by Spring into the Web Service -->
+	<bean id="myBean" class="com.filmrental.services.MyBeanImpl">
+		<property name="val" value="Spring, emerge thyself" />
+	</bean>
+	
+<!-- Specifies Where all the views are located -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -28,16 +44,14 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-	
+
+<!-- Defines the location of the DataSource installed on Tomcat we only need the reference, the rest is 
+configured on the server itself (it will be configured in config.xml in the tomcat server) -->
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
     	<property name="jndiName" value="java:comp/env/jdbc/MyLocalDB"/>
 	</bean>
-	
-	<!-- <bean id="sessionFactory"
-   		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-    	<property name="dataSource" ref="dataSource" />
-	</bean> -->
-	
+
+<!-- Hibernate's Session factory, provides persistence to the db-->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" >
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
@@ -53,12 +67,16 @@
             </props>
         </property>       
     </bean>
-	
+
+<!-- Hibernate's transactions provide atomicity to the operation, in this configuration
+can be accessed through @Transactional annotation -->
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 	<bean id="transactionManager"
     	class="org.springframework.orm.hibernate5.HibernateTransactionManager">
     	<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	
+<!-- DAO beans to be used with Hibernate's session -->
 	
 	<bean id="filmsDao" class="com.filmrental.dao.FilmsDaoImpl">
     	<constructor-arg>

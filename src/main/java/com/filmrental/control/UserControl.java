@@ -18,6 +18,7 @@ public class UserControl {
 	
 	@Autowired private UsersBl usersBl;
 	
+	/* Maps the requests to view the users homepage*/
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView displayUserView(){
 		if(username.getUsername() == null) return new ModelAndView("redirect:/login");
@@ -25,6 +26,7 @@ public class UserControl {
 		return m;
 	}
 	
+	/* Maps the request to rent a new film*/
 	@RequestMapping(value = "/rentFilm", method = RequestMethod.POST)
 	public String rentFilm(@RequestParam("filmId") int filmId){
 		if(username.getUsername() == null) return "redirect:/login";
@@ -32,6 +34,7 @@ public class UserControl {
 		return "redirect:/login/user/view";
 	}
 	
+	/* Maps the request to return an owned film to the db*/
 	@RequestMapping(value = "/returnFilm", method = RequestMethod.POST)
 	public String returnFilm(@RequestParam("returnId") int rentId){
 		if(username.getUsername() == null) return "redirect:/login";
@@ -40,6 +43,8 @@ public class UserControl {
 		System.out.println("CONTROLLER "+rentId);
 		return "redirect:/login/user/view";
 	}
+	
+	/* Maps a request to add a film to the requested ones*/
 	@RequestMapping(value = "/addFilmRequest", method = RequestMethod.POST)
 	public String addFilmRequest(@RequestParam("filmTitle") String filmTitle){
 		if(username.getUsername() == null) return "redirect:/login";
