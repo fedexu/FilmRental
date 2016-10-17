@@ -27,8 +27,22 @@ Admins can:
 - Add a new film into the catalogue (specifying the number of copies)
 - View the suggestion list and move one into the catalogue (specifying the number of copies)
 
-(ADDITION) A record of all the rents must be maintained in the DB: it has to include rental 
+A record of all the rents must be maintained in the DB: it has to include rental 
 date and return date for each film.
+
+============================================================================================
+FIRST ADDTION: (Implementig SOAP Services with Axis2 and Spring)
+
+Let's now expand the project by adding the ability for an external film provider to get all
+the requests of the rental users for films that at the moment are not in the catalogue and
+to communicate the possibility to deliver this film.
+The film provider can:
+
+- View a list of films that are requested by the users;
+- Provide a film, among the one listed, to be considered by the admin for insertion in the
+catalogue.
+
+The service has to be realized as an Axis2 WebService that processes SOAP requests.
 
 ============================================================================================
 

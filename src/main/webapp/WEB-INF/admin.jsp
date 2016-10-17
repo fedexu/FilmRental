@@ -46,11 +46,29 @@
 	 for(int i = 0; i<listFilms.size(); i++) {
 		out.println("<tr>");
 		out.print("<td>"+listFilms.get(i).getTitle()+"</td>");
-		out.print("<td><form action='addToCollection' method='post'>"+
-		"<input type= 'hidden' name='filmTitle' value='"+listFilms.get(i).getTitle()+"'/>" +	
+		out.print("<td><form action='addFromRequests' method='post'>"+
+		"<input type= 'hidden' name='filmId' value='"+listFilms.get(i).getId()+"'/>" +	
 		"Quantity: <input type= 'number' name='quantity'/><button>ADD</button></form></td>");
 		out.println("</tr>");
 		
+	 }
+  %>
+  </table>
+  
+  <h2>EXTERNAL PROVISIONS:</h2>
+  <table style="widtd:100%">
+  <tr>
+    <th>Title</th>
+  </tr>
+  <% List<Films> listFilmsProv = (List<Films>) request.getAttribute("provided"); 
+	 for(int i = 0; i<listFilmsProv.size(); i++) {
+		out.println("<tr>");
+		out.print("<td>"+listFilmsProv.get(i).getTitle()+"</td>");
+		out.print("<td><form action='addFromProvided' method='post'>"+
+		"<input type= 'hidden' name='filmId' value='"+listFilmsProv.get(i).getId()+"'/>" +
+		"<input type= 'hidden' name='maxCopies' value='"+listFilmsProv.get(i).getCopies()+"'/>"+
+		"Quantity: <input type= 'number' name='quantity' max='"+listFilmsProv.get(i).getCopies()+"'/><button>ADD</button></form></td>");
+		out.println("</tr>");
 	 }
   %>
   </table>

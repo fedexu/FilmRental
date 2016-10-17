@@ -27,84 +27,95 @@
     </plugins>
   </build>
   <dependencies>
-	  <!-- Spring -->
-	  
-	  <dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-core</artifactId>
-	    <version>4.3.3.RELEASE</version>
-	 </dependency>
-	  
-	  <dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-context</artifactId>
-	    <version>4.3.3.RELEASE</version>
-	  </dependency>
-	 
-	  <dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-webmvc</artifactId>
-	    <version>4.3.3.RELEASE</version>
-	  </dependency>
-	
-	  <dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-orm</artifactId>
-	    <version>4.3.3.RELEASE</version>
-	  </dependency>
-	  
-	  <dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-web</artifactId>
-	    <version>4.3.3.RELEASE</version>
-	  </dependency>
-	 
-	  <!-- Hibernate -->
-	  <dependency>
-   		 <groupId>org.hibernate</groupId>
-    	 <artifactId>hibernate-core</artifactId>
-    	 <version>5.2.3.Final</version>
-	  </dependency>
-	  
-	  <dependency>
-	    <groupId>javassist</groupId>
-	    <artifactId>javassist</artifactId>
-	    <version>3.12.1.GA</version>
-	  </dependency>
-	  
+	<!-- Spring -->
 
-	  
-	  <!-- Java EE -->
-	  <dependency>
-    	<groupId>javax.servlet</groupId>
-	    <artifactId>servlet-api</artifactId>
-	    <version>2.5</version>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>4.3.3.RELEASE</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>4.3.3.RELEASE</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>4.3.3.RELEASE</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>4.3.3.RELEASE</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>4.3.3.RELEASE</version>
+	</dependency>
+
+	<!-- Hibernate -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>5.2.3.Final</version>
+	</dependency>
+
+	<dependency>
+		<groupId>javassist</groupId>
+		<artifactId>javassist</artifactId>
+		<version>3.12.1.GA</version>
+	</dependency>
+
+	<!-- Java EE -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>2.5</version>
 	</dependency>
 	<dependency>
-	    <groupId>javax.servlet.jsp</groupId>
-	    <artifactId>javax.servlet.jsp-api</artifactId>
-	    <version>2.3.1</version>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>javax.servlet.jsp-api</artifactId>
+		<version>2.3.1</version>
 	</dependency>
-	 
-	  <dependency>
-	    <groupId>javax.servlet</groupId>
-	    <artifactId>jstl</artifactId>
-	    <version>1.2</version>
-	  </dependency>
-	 
-	  <!-- Everything Else -->
-	  <dependency>
-	    <groupId>mysql</groupId>
-	    <artifactId>mysql-connector-java</artifactId>
-	    <version>5.1.6</version>
-	  </dependency>
-	
-	
-      <dependency>
-    	<groupId>org.apache.tomcat</groupId>
-    	<artifactId>tomcat-dbcp</artifactId>
-    	<version>7.0.55</version>
-	  </dependency>
 
-	</dependencies>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+
+	<!-- MySql Connector -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.6</version>
+	</dependency>
+
+	<!-- Tomcat Datastore -->
+	<dependency>
+		<groupId>org.apache.tomcat</groupId>
+		<artifactId>tomcat-dbcp</artifactId>
+		<version>7.0.55</version>
+	</dependency>
+	
+	<!-- AXIS2 -->
+	<dependency>
+		<groupId>org.apache.ws.commons.axiom</groupId>
+		<artifactId>axiom-api</artifactId>
+		<version>1.2.5</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.apache.axis2</groupId>
+		<artifactId>axis2-spring</artifactId>
+		<version>1.6.2</version>
+	</dependency>
+	
+  </dependencies>
 </project>

@@ -9,10 +9,18 @@ import com.filmrental.model.Users;
 
 @Service
 public class LoginBl {
+	
+	// User session
 	@Autowired private UserSession userSession;
 	
 	@Autowired private UsersDao userDao;
 	
+	/* Checks if the user does exists in the database of the registered users if it does
+	 * prepares a redirect to their homepages (user or admin) if not it redirects again to the login page.
+	 * 
+	 * This is an issue both of view that of logic I decided to put it here for simplicity even if it could have
+	 * been implemented, maybe more correctly, by moving the redirects on the controllers and pass only some variables
+	 * from the Business Logic */
 	public String checkUserName(String username){
 		userSession.setUsername(username);
 		Users usr = userDao.getUserByUsername(username);

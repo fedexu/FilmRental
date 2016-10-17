@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.NonUniqueResultException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -85,10 +86,12 @@ public class FilmsDaoImpl implements FilmsDao {
 	/* Set a suggested film as approved to be rented */
 	@Override
 	@Transactional
-	public boolean setApproved(int id) {
-		String hql = "update Films f set f.approved = 1 where f.id = :id";
+	public boolean setApproved(int id, int copies) {
+		String hql = "update Films f set f.approved = 1, f.copies = :copies where f.id = :id";
 		Query q = sessionFactory.getCurrentSession().createQuery(hql);
 		q.setParameter("id", id);
+		q.setParameter("copies", copies);
+		System.out.println(id);
 		try {
 			int updatedEntities = q.executeUpdate();
 			System.out.println("Updated : " + updatedEntities + "entities.");
@@ -128,6 +131,7 @@ public class FilmsDaoImpl implements FilmsDao {
 	public List<Films> getAllActiveRequests() {
 		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Films.class);
 		cr.add(Restrictions.eq("approved", false));
+		cr.add(Restrictions.eq("requested", 1));
 		try {
 			return (List<Films>) cr.list();
 		} catch (HibernateException e) {
@@ -161,6 +165,63 @@ public class FilmsDaoImpl implements FilmsDao {
 			}
 			
 			return resultcast;
+		} catch (HibernateException e) {
+			System.out.println("Error in getting film list due to: " + e);
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Transactional
+	/* Check if the film is requested, not approved and with no copies left (request = 2)*/
+	public boolean checkProvidable(int id){
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Films.class);
+		cr.add(Restrictions.eq("id", id));
+		cr.add(Restrictions.eq("approved", false));
+		cr.add(Restrictions.eq("requested", 1));
+		cr.add(Restrictions.eq("copies", 0));
+		
+		try {
+			Films f = (Films) cr.uniqueResult();
+			return true;
+		} catch (NonUniqueResultException ne){
+			return false;
+		} catch (HibernateException e) {
+			System.out.println("Error in getting film list due to: " + e);
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/* Set a suggested film as approved to be rented */
+	@Override
+	@Transactional
+	public boolean setProvided(int id, int copies) {
+		String hql = "update Films f set f.requested = 2, f.copies = :copies where f.id = :id";
+		Query q = sessionFactory.getCurrentSession().createQuery(hql);
+		q.setParameter("id", id);
+		q.setParameter("copies", copies);
+		System.out.println(id);
+		try {
+			int updatedEntities = q.executeUpdate();
+			System.out.println("Updated : " + updatedEntities + "entities.");
+			return true;
+		} catch (Exception e) {
+			System.out.println("Error in updating approval due to: " + e);
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/* Lists all the films that are marked as providable by an external provider*/
+	@Override
+	@Transactional
+	public List<Films> getAllProvided() {
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Films.class);
+		cr.add(Restrictions.eq("requested", 2));
+		cr.add(Restrictions.eq("approved", false));
+		try {
+			return (List<Films>) cr.list();
 		} catch (HibernateException e) {
 			System.out.println("Error in getting film list due to: " + e);
 			e.printStackTrace();

@@ -1,0 +1,40 @@
+How to implement a webservice with Axis2 with Spring:
+==================================================================================================
+
+First of all you can easily follow the official tutorial at:
+
+https://axis.apache.org/axis2/java/core/docs/spring.html
+(In the case of our project we have a Servlet Context so follow the first part of the guide) 
+
+At the end of the configuration you will find yourself with a working example that allows you to 
+exchange SOAP requests based on Strings. However it will require all the messages to be wrapped
+in Axiom's OME elemnts (https://ws.apache.org/axiom/apidocs/org/apache/axiom/om/OMElement.html)
+to work with complex objects.
+
+If you prefer, as is understandable =), to directly expose the structure of your complex object
+all you have to do is to switch your Axis2 message receiver from: RawXMLINOutMessageReceiver to
+RPCMessageReceiver.
+
+To do so in services.xml edit your <operation> to include this:  
+        <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+
+For example:
+
+<operation name="provideFilm"> 
+    	<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+</operation>
+
+
+NB: there is still a limitation on sets and collections of objects, which is hardwired in 
+axis2, therefore if you need to perform a SOAP request for a list of objects you will have 
+to transform it in a compatible format (i.e. array of objects).
+
+IMPORTANT NOTE: Unless you want to waste a lot of time figuring out what's wrong
+check that your service.xml resides in a folder *NAMED AFTER YOUR SERVICE* in the subpath META-INF.
+(in our case for example is: src\main\webapp\WEB-INF\services\ExternalProviderService\META-INF\services.xml)
+
+
+If everything is done properly you should be able to spring a new webservice that allows you
+to pass complex objects. Otherwise happy debugging!  But feel free to comment to ask =)
+
+Dario Ferrarotti

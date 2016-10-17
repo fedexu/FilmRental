@@ -16,7 +16,7 @@ public interface FilmsDao {
 	List<Films> getAllFilms();
 	
 	/* Set a suggested film as approved to be rented */
-	boolean setApproved(int id);
+	boolean setApproved(int id, int copies);
 	
 	/* Set the number of copies of the film that will be possible to rent */
 	boolean setCopies(int id, int copies);
@@ -26,4 +26,13 @@ public interface FilmsDao {
 
 	/* Get all the films that can be rented at the moment*/
 	List<Films> getAllRentableFilms();
+	
+	/* Check if the film si requested, not approved and with no copies left */
+	boolean checkProvidable(int id);
+	
+	/* Marks a film as provdable by an external provider */
+	boolean setProvided(int id, int copies);
+	
+	/* Lists all the films that are marked as providable by an external provider*/
+	List<Films> getAllProvided();
 }
