@@ -1,4 +1,4 @@
-The goal of this migration was done to facilitate the next step which will be to add an AXIS2 web service. 
+This migration was done to facilitate the next step which will be to add an AXIS2 web service. 
 
 In view of this change it is also necessary to downgrade Eclipse's Dynamic Web Project version from 3.0 to 2.5. 
 
