@@ -9,6 +9,7 @@ https://axis.apache.org/axis2/java/core/docs/spring.html
 At the end of the configuration you will find yourself with a working example that allows you to 
 exchange SOAP requests based on Strings. However it will require all the messages to be wrapped
 in Axiom's OME elemnts (https://ws.apache.org/axiom/apidocs/org/apache/axiom/om/OMElement.html)
+to work with complex objects.
 
 If you prefer, as is understandable =), to directly expose the structure of your complex object
 all you have to do is to switch your Axis2 message receiver from: RawXMLINOutMessageReceiver to
