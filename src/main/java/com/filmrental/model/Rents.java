@@ -101,4 +101,19 @@ public class Rents {
 	public void setUser(Users user) {
 		this.associatedUser = user;
 	}
+	
+	@Override
+	public String toString(){
+		return "{"
+				+ "\" id:\": \" "+ this.id +" \" ,"
+				+ "\" userId:\": \" "+ this.userId +" \" ,"
+				+ "\" filmId: \": \" "+ this.filmId +" \" }";
+	}
+	
+	public String toString(String complete){
+		complete.replace("}", "\",");
+		complete = complete + " \"associatedUser\": " + associatedUser.toString() +"";
+		complete = complete + "} ";
+		return complete;
+	}
 }

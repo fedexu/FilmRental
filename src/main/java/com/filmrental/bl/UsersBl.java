@@ -33,10 +33,9 @@ public class UsersBl {
 		return m;
 	}
 	
+	/* Invokes the dao to return a film*/
 	public void returnFilm(int id) {
 		rentsDao.returnFilm(id);
-		System.out.println("BL");
-		
 	}
 	
 	/* Invokes the dao to try renting a film*/

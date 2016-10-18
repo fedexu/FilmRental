@@ -49,4 +49,25 @@ public class Users {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
+	
+	@Override
+	public String toString(){
+		return "{"
+				+ "\" id:\": \" "+ this.id +" \" ,"
+				+ "\" username:\": \" "+ this.username +" \" ,"
+				+ "\" admin: \": \" "+ this.isAdmin() +" \" }";
+	}
+	
+	public String toString(String complete)
+	{   
+		complete.replace("}", "\",");
+		complete = complete + " \"rentingUsers\": [";
+		for(int i=0; i<rentingUsers.size(); i++){
+			complete = complete + rentingUsers.toString();
+			complete = complete + ", ";
+		}
+		complete = complete + "]}";
+		
+		return complete;
+	}
 }

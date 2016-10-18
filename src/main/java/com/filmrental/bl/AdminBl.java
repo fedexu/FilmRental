@@ -13,7 +13,7 @@ import com.filmrental.model.Films;
 import com.filmrental.model.Rents;
 
 @Service
-public class AdminBl {
+public class AdminBl{
 	@Autowired private UserSession username;
 	
 	@Autowired private RentsDao rentsDao;
@@ -44,5 +44,6 @@ public class AdminBl {
 	public void addFromRequests(int id, int quantity){
 		filmsDao.setApproved(id, quantity);
 	}
+	
 
 }

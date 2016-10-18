@@ -11,7 +11,6 @@ import com.filmrental.bl.UsersBl;
 
 @Controller
 @RequestMapping("/login/user")
-
 public class UserControl {
 	
 @Autowired private UserSession username;

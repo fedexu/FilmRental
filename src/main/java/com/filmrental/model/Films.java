@@ -80,7 +80,25 @@ public class Films {
 	
 	@Override
 	public String toString(){
-		
-		return "["+this.id+", "+this.title+", "+ this.copies +"]";
+		return "{"
+				+ "\" id:\": \" "+ this.id +" \" ,"
+				+ "\" title:\": \" "+ this.title +" \" ,"
+				+ "\" copies: \": \" "+ this.copies +" \" ,"
+				+ "\" requested: \": \" "+ this.getRequested() +" \" ,"
+				+ "\" approved: \": \" "+ this.isApproved() +" \" }";
 	}
+	
+	public String toString(String complete)
+	{   
+		complete.replace("}", "\",");
+		complete = complete + " \"rentingUsers\": [";
+		for(int i=0; i<rentedFilms.size(); i++){
+			complete = complete + rentedFilms.toString();
+			complete = complete + ", ";
+		}
+		complete = complete + "]}";
+		
+		return complete;
+	}
+
 }
