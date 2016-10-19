@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.filmrental.bl.UsersBl;
-import com.filmrental.dao.RentsDao;
 
 @Service
 public class WrapperUsersBl {
@@ -17,6 +16,7 @@ public class WrapperUsersBl {
 	
 	public WrapperUsersBl(){}
 	
+	/*Wrapping the showUser output to be used with JSONS*/
 	public String showUser(String u){
 		ModelAndView res = usrBl.showUser(u);
 		Map map = res.getModel();

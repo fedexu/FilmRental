@@ -13,6 +13,7 @@ import javax.persistence.Table;
 public class Users {
 	@Id
 	@Column(name="ID")
+
 	private int id;
 	
 	@Column(name="Username")

@@ -65,7 +65,7 @@ public class RentsDaoImpl implements RentsDao{
 		}
 	}
 	
-	//TODO Comment me
+	/* Provides the number of film that a user has rented*/
 	@Override
 	@Transactional
 	public int getFilmCount(int id){

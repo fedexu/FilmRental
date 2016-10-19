@@ -14,8 +14,8 @@ public class WrapperAdminBl {
 	
 	@Autowired private AdminBl admBl;
 	
-	public String showAdmin(String u){
-		
+	/*Wrapping the showAdmin output to be used with JSONS*/
+	public String showAdmin(String u){	
 		ModelAndView res = admBl.showAdmin(u);
 		Map map = res.getModel();
 		List<Rents> currentRents 	= (List<Rents>) map.get("currentRents");
