@@ -8,6 +8,7 @@ Here you will find a simple example of the following technologies and frameworks
 - Hibernate 4.3.5 (Persistance)
 - MySQL 5.1.3 (DB)
 - Tomcat dbcp 7.0.55(DataStore)
+- Axis2 (Web Service)
 
 The project is the solution of an exercise that was given to me in the form of the
 following requirements:
@@ -43,6 +44,14 @@ The film provider can:
 catalogue.
 
 The service has to be realized as an Axis2 WebService that processes SOAP requests.
+
+============================================================================================
+SECOND ADDITION: (Implementing REST paradigm)
+
+As an addition we want to make our web application to work also as a RESTful web service. 
+In order to do so we need to re-implement the view and control sections. The application
+must be now be invoked through a new path /FilmRental/rest in which all the functions since
+now implemented are serviced in a RESTful manner.
 
 ============================================================================================
 
