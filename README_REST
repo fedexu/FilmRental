@@ -1,0 +1,36 @@
+To implement REST we can rely on a moltitude of frameworks, two really popular options are Spring REST (included in Spring Web component) and Jersey. 
+Briefly researching the web revealed that even though not natively it may be possible to use Jersey with Spring 4. (http://www.codingpedia.org/ama/tutorial-rest-api-design-and-implementation-in-java-with-jersey-and-spring/)
+
+However it also brought to attention the new Spring 4 REST support, that seemed more supported (https://www.genuitec.com/spring-frameworkrestcontroller-vs-controller/), in any case it was decided to go with this.
+
+Migrate our web application to REST using Spring native support in our case is merely a matter of 3 steps:
+
+1. Implement methods in the model classes that overrides toString() and converts the complex object to a String in JSON synthax (this is necessary due to the fact that we have some ManytoOne relations that will create quite complex object structures) 
+
+2. Implement some wrappers to make sure that the business logic returns general String not ModelAndViews
+(if you behaved correctly in the previous phases and programmed properly your business logic it's likely that you can skip this!)
+
+3. Convert the controllers to REST controllers by switching to @Restcontroller annotation being careful to add the dependency for jackson-databing in your pom.xml and convert the input parameters to Maps.
+
+NOTE THAT: at least in our case, despite what described in Spring documentation, it was still necessary to specify the @RequestBody annotation in order to properly pass parameter through jackson-databind.
+
+NOTE THAT: the proper maven dependecy for jackson databind is: jackson-databind and not jackson-core.
+
+At this point without a proper front-end for a REST service (that will be the next focus on this project) we can test this implementation using any tool that can send custom http requests. In our case Firefox's extension HttpRequester was used(https://addons.mozilla.org/en-US/firefox/addon/httprequester/). Feel free to use your own but be sure to specify application/json as content type and properly format the request in JSON synthax.
+GET http://localhost:8080/FilmRental/rest/login/user/view
+
+
+An example of response is the following:
+---------------------------------------------------------------------------------------
+ -- response --
+200 OK
+Server:  Apache-Coyote/1.1
+Set-Cookie:  JSESSIONID=8C3CC7B43C86C0259FB56803A25519E9; Path=/FilmRental; HttpOnly
+Content-Type:  text/html;charset=ISO-8859-1
+Content-Length:  1909
+Date:  Wed, 19 Oct 2016 07:01:01 GMT
+
+[[],[{" id:": " 1 " ," title:": " Spartacus " ," copies: ": " 3 " ," requested: ": " 0 " ," approved: ": " false " }, {" id:": " 2 " ," title:": " The Shining " ," copies: ": " 2 " ," requested: ": " 0 " ," approved: ": " false " }, {" id:": " 3 " ," title:": " 2001 a space odyssey " ," copies: ": " 3 " ," requested: ": " 0 " ," approved: ": " false " }, {" id:": " 4 " ," title:": " A clockwork orange " ," copies: ": " 3 " ," requested: ": " 0 " ," approved: ": " false " }, {" id:": " 5 " ," title:": " Eyes whide shut " ," copies: ": " 3 " ," requested: ": " 0 " ," approved: ": " false " }, {" id:": " 6 " ," title:": " Full metal Jacket " ," copies: ": " 3 " ," requested: ": " 0 " ," approved: ": " false " }, {" id:": " 7 " ," title:": " Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb " ," copies: ": " 3 " ," requested: ": " 0 " ," approved: ": " false " }, {" id:": " 8 " ," title:": " Lolita " ," copies: ": " 3 " ," requested: ": " 0 " ," approved: ": " false " }]]
+---------------------------------------------------------------------------------------
+
+Happy coding, Dario Ferrarotti
