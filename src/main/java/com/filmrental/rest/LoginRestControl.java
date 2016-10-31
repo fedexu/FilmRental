@@ -1,6 +1,7 @@
 package com.filmrental.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,6 @@ public class LoginRestControl {
 	/* Requesting user profile: returns "fail" if user not present, "admin" or "user" if the user is present*/
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes="application/json")
 	public String logIn(@RequestBody Users user) {
-			return wrapperLoginBl.checkUserName(user.getUsername());
+		return wrapperLoginBl.checkUserName(user.getUsername());
 	}	
 }

@@ -26,9 +26,16 @@ public class LoginBl {
 		Users usr = userDao.getUserByUsername(username);
 		if(usr == null) return "redirect:/login";
 		else{
-			 userSession.setId(usr.getId());
-			 if( usr.isAdmin() ) return "redirect:/login/admin/view";
-			 else return "redirect:/login/user/view";
+			userSession.setId(usr.getId());
+			//userSession.setSessionId();
+			if( usr.isAdmin() ) {
+				 userSession.setStatus("admin");
+				 return "redirect:/login/admin/view";
+			}
+			else {
+				userSession.setStatus("user");
+				 return "redirect:/login/user/view";
+			}
 		}
 	}
 

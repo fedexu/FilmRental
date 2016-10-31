@@ -14,8 +14,8 @@
         http://www.springframework.org/schema/tx 
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
-<!-- Specify the resource folder location, that I want to use annotation in Spring MVC components -->
-	<mvc:resources mapping="/resources/**" location="/resources/" />
+<!-- Specify 	the resource folder location, that I want to use annotation in Spring MVC components -->
+	<mvc:resources mapping="/resources/**" location="/resources/AngularApp" />
 	<mvc:annotation-driven />
 	
 <!-- Where I can find the classes to scan for annotations -->

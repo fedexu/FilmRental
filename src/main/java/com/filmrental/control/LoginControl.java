@@ -10,13 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.filmrental.bl.LoginBl;
 import com.filmrental.model.Users;
-import com.filmrental.model.WrapperLoginBl;
 
 @Controller
 @Scope("session")
 public class LoginControl {	
 	@Autowired private UserSession username;
-
 	@Autowired private LoginBl loginBl;
 	
 	/* Shows a basic login interface */

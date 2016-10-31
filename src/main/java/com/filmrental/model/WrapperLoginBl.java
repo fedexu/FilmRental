@@ -15,9 +15,8 @@ public class WrapperLoginBl {
 	/*Wrapping the Login output to be used with JSONS*/
 	public String checkUserName(String user){
 		String res = loginBl.checkUserName(user);
-		if(res == "redirect:/login/admin/view") return "admin";
-		else if(res == "redirect:/login/user/view") return "user";
-		else return "fail";
+		if(res == "redirect:/login/admin/view") return "{\"status\":\"admin\"}";
+		else if(res == "redirect:/login/user/view") return "{\"status\":\"user\"}";
+		else return "{\"status\":\"fail\"}";
 	}
-
 }

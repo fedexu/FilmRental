@@ -2,7 +2,6 @@ package com.filmrental.control;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.context.annotation.ScopedProxyMode;
 
 @Component
@@ -11,25 +10,17 @@ import org.springframework.context.annotation.ScopedProxyMode;
 public class UserSession {
 	private String username;
 	private int id;
-	private ModelAndView view;
-	public void setView(ModelAndView view) {
-		this.view = view;
-	}
-
-	public void setCk(boolean ck) {
-		this.ck = ck;
-	}
-
-	public ModelAndView getView() {
-		return view;
-	}
-
-	public boolean isCk() {
-		return ck;
-	}
-
-	private boolean ck;
+	private int sessionId;
+	private String status;
 	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+		
 	public int getId() {
 		return id;
 	}
@@ -44,5 +35,13 @@ public class UserSession {
 	
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public int getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(int sessionId) {
+		this.sessionId = sessionId;
 	}
 }

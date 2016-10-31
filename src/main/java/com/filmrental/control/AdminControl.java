@@ -41,6 +41,7 @@ public class AdminControl {
 		return "redirect:/login/admin/view";
 	}
 	
+	
 	@RequestMapping(value = "/addFromProvided", method = RequestMethod.POST)
 	public String addFromProvided(int filmId, int quantity, int maxCopies){
 		if(username.getUsername() == null) return "redirect:/login";

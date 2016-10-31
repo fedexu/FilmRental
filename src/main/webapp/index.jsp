@@ -6,7 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>HOMEPAGE</title>
 </head>
+
 <body>
-  <h1>Login <a href="login">here</a> please.</h1>
+    <app-root>Loading...</app-root>
+	<script type="text/javascript" src="<c:url value="/resources/AngularApp/inline.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/AngularApp/styles.bundle.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/AngularApp/main.bundle.js" />"></script>
+  
 </body>
 </html>
