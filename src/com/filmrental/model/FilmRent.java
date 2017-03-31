@@ -1,14 +1,34 @@
 package com.filmrental.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "FILMRENTED")
 public class FilmRent {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "RENT_ID")
 	private int rentId;
+	@Column(name = "ORDER_DATE")
 	private Date orderDate;
+	@Column(name = "RETURN_DATE")
 	private Date returnDate;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID", nullable = false)
 	private User user;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "FILM_ID", nullable = false)
 	private Film film;
 
 	public FilmRent() {
