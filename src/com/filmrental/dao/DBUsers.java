@@ -49,10 +49,7 @@ public class DBUsers {
 			NativeQuery<User> query = session.createNativeQuery("SELECT * FROM USERS WHERE USERNAME=:USR ");
 			query.addEntity(User.class);
 			query.setParameter("USR", username);
-			list = query.list();
-			for (User u : list) {
-				user = u;
-			}
+			user = query.uniqueResult();
 
 		} catch (Exception e) {
 			e.printStackTrace();

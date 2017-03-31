@@ -27,7 +27,7 @@ public class DBFilmRent {
 	public DBFilmRent() {
 	}
 
-	public List<FilmRent> selectAllFilmsRent() throws NamingException, SQLException {
+	public List<FilmRent> selectAllFilmsRent() {
 
 		Session session = null;
 		List<FilmRent> list = null;
@@ -48,7 +48,7 @@ public class DBFilmRent {
 		return list;
 	}
 
-	public List<FilmRent> selectFilmsRentByUserId(User user) throws NamingException, SQLException {
+	public List<FilmRent> selectFilmsRentByUserId(User user){
 
 		Session session = null;
 		List<FilmRent> list = null;

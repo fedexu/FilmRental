@@ -17,17 +17,18 @@
 
 		<!-- Echo all executed SQL to sysout -->
 		<property name="show_sql">true</property>
-		
+
 <!-- 		sessionFactory  initialization lazy pemritted config -->
 		<property name="current_session_context_class">thread</property>
 
 		<!-- Create/Update the database schema on startup -->
 		<!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
 		<!-- Mapping file -->
-		<mapping resource="/resources/Film.hbm.xml" />
-		<mapping resource="/resources/FilmRent.hbm.xml" />
-		<mapping resource="/resources/FilmRequest.hbm.xml" />
-		<mapping resource="/resources/User.hbm.xml" />
+		<mapping class ="com.filmrental.model.Film" />
+		<mapping class ="com.filmrental.model.FilmRent" />
+		<mapping class ="com.filmrental.model.FilmRequest" />
+		<mapping class ="com.filmrental.model.User"/>
+		
 	</session-factory>
 
 </hibernate-configuration>

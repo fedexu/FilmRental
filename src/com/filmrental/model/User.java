@@ -2,14 +2,33 @@ package com.filmrental.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "USERS")
 public class User {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USER_ID")
 	private int userId;
+	@Column(name = "USERNAME")
 	private String username;
+	@Column(name = "U_PASS")
 	private String pass;
+	@Column(name = "FIRST_NAME")
 	private String firstName;
+	@Column(name = "LAST_NAME")
 	private String lastName;
+	@OneToMany( mappedBy = "user")
 	private List<FilmRent> filmRented;
-	private List<FilmRequest> filmRequest;
 
 	public User() {
 		userId = 0;
@@ -66,13 +85,4 @@ public class User {
 	public void setFilmRented(List<FilmRent> filmRented) {
 		this.filmRented = filmRented;
 	}
-
-	public List<FilmRequest> getFilmRequest() {
-		return filmRequest;
-	}
-
-	public void setFilmRequest(List<FilmRequest> filmRequest) {
-		this.filmRequest = filmRequest;
-	}
-
 }

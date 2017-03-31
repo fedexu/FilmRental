@@ -1,13 +1,31 @@
 package com.filmrental.model;
 
-public class FilmRequest {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-	private int userId;
-	private String title;
-	private String regist;
-	private int exitYear;
+@Entity
+@Table(name = "FILMREQUEST")
+public class FilmRequest {
+	
+	@Id
+	@GeneratedValue  (strategy = GenerationType.AUTO)
+	@Column (name = "REQUEST_ID")
 	private int requestId;
-	private User user;
+	@Column(name = "USER_ID")
+	private int userId;
+	@Column(name = "TITLE")
+	private String title;
+	@Column(name = "REGIST")
+	private String regist;
+	@Column(name = "EXIT_YEAR")
+	private int exitYear;
 
 	public FilmRequest() {
 		userId = 0;
@@ -60,14 +78,6 @@ public class FilmRequest {
 
 	public int getRequestId() {
 		return this.requestId;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 	
 }

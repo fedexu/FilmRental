@@ -19,27 +19,27 @@ public class Store {
 	public Store() {
 	}
 
-	public List<Film> filmRentable() throws NamingException, SQLException {
+	public List<Film> filmRentable()  {
 		List<Film> list = new ArrayList<Film>();
 		DBFilms film = new DBFilms();
 		list = film.selectAllFilm();
 		return list;
 	}
 
-	public List<FilmRent> filmRentedbyUser(User user) throws NamingException, SQLException {
+	public List<FilmRent> filmRentedbyUser(User user)  {
 		DBFilmRent fr = new DBFilmRent();
 		List<FilmRent> listrented = fr.selectFilmsRentByUserId(user);
 		return listrented;
 	}
 
-	public User setUserInStore(String Username) throws NamingException, SQLException {
+	public User setUserInStore(String Username)  {
 		User user = new User();
 		DBUsers us = new DBUsers();
 		user = us.selectUserDetails(Username);
 		return user;
 	}
 
-	public List<FilmRent> addFilmRentedByUser(User user, String[] controller) throws NamingException, SQLException {
+	public List<FilmRent> addFilmRentedByUser(User user, String[] controller) {
 	
 		DBFilmRent fr = new DBFilmRent();
 		List<Film> list = filmRentable();
@@ -55,9 +55,16 @@ public class Store {
 		}
 		return listrented;
 	}
+	
+	public List<FilmRent> addFilmRentedByUser(User user,Film film) {
+		
+		DBFilmRent fr = new DBFilmRent();
+		fr.addFilmRent(film, user);
+		List<FilmRent> listrented = fr.selectFilmsRentByUserId(user);
+		return listrented;
+	}
 
-	public List<FilmRent> returnFilmRentedByUser(User user,String rent_Id)
-			throws NamingException, SQLException {
+	public List<FilmRent> returnFilmRentedByUser(User user,String rent_Id){
 		DBFilmRent fr = new DBFilmRent();
 		List<FilmRent> listrented = fr.selectFilmsRentByUserId(user);
 		int rentid = Integer.parseInt(rent_Id);
