@@ -2,63 +2,72 @@ package com.filmrental.model;
 
 public class FilmRequest {
 
-	private int User_Id;
-	private String Title;
-	private String Regist;
-	private int Exit_Year;
-	private int Request_Id;
+	private int userId;
+	private String title;
+	private String regist;
+	private int exitYear;
+	private int requestId;
+	private User user;
 
 	public FilmRequest() {
-		User_Id = 0;
-		Title = null;
-		Regist = null;
-		Exit_Year = 0;
-		Request_Id = 0;
+		userId = 0;
+		title = null;
+		regist = null;
+		exitYear = 0;
+		requestId = 0;
 	}
 
-	// set e get di User_Id
-	public void setUser_Id(int User_Id) {
-		this.User_Id = User_Id;
+	// set e get di userId
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public int getUser_Id() {
-		return this.User_Id;
+	public int getUserId() {
+		return this.userId;
 	}
 
-	// set get Title
-	public void setTitle(String Title) {
-		this.Title = Title;
+	// set get title
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getTitle() {
-		return this.Title;
+		return this.title;
 	}
 
-	// set get Regist
-	public void setRegist(String Regist) {
-		this.Regist = Regist;
+	// set get regist
+	public void setRegist(String regist) {
+		this.regist = regist;
 	}
 
 	public String getRegist() {
-		return this.Regist;
+		return this.regist;
 	}
 
-	// set e get di Exit_Year
-	public void setExit_Year(int Exit_Year) {
-		this.Exit_Year = Exit_Year;
+	// set e get di exitYear
+	public void setExitYear(int exitYear) {
+		this.exitYear = exitYear;
 	}
 
-	public int getExit_Year() {
-		return this.Exit_Year;
+	public int getExitYear() {
+		return this.exitYear;
 	}
 	
-	// set e get di Request_Id
-	public void setRequest_Id(int Request_Id) {
-		this.Request_Id = Request_Id;
+	// set e get di requestId
+	public void setRequestId(int requestId) {
+		this.requestId = requestId;
 	}
 
-	public int getRequest_Id() {
-		return this.Request_Id;
+	public int getRequestId() {
+		return this.requestId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

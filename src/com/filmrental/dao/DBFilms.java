@@ -1,5 +1,6 @@
 package com.filmrental.dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,8 +14,13 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
+import org.hibernate.query.NativeQuery;
+
 import com.filmrental.model.Film;
+import com.filmrental.model.FilmRent;
 import com.filmrental.model.User;
+import com.filmrental.utils.HibernateUtil;
 
 public class DBFilms {
 
@@ -24,394 +30,214 @@ public class DBFilms {
 
 	public List<Film> selectAllFilm() throws NamingException, SQLException {
 
-		Context initContext;
-		Context envContext;
-		DataSource ds;
-		Connection con = null;
-		Statement st = null;
+		Session session = null;
+		List<Film> list = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			NativeQuery<Film> query = session.createNativeQuery("SELECT * FROM FILMS");
+			query.addEntity(Film.class);
+			list = query.list();
 
-		initContext = new InitialContext();
-		envContext = (Context) initContext.lookup("java:/comp/env");
-		ds = (DataSource) envContext.lookup("jdbc/orclhr");
-		con = ds.getConnection();
-
-		st = con.createStatement();
-		String sql = "SELECT * FROM FILMS";
-		ResultSet rs = st.executeQuery(sql);
-
-		List<Film> list = new ArrayList<Film>();
-		while (rs.next()) {
-			Film film = new Film();
-			film.setFilm_Id(rs.getInt("FILM_ID"));
-			film.setTitle(rs.getString("TITLE"));
-			film.setRegist(rs.getString("REGIST"));
-			film.setExit_Year(rs.getInt("EXIT_YEAR"));
-			film.setQuantity(rs.getInt("QUANTITY"));
-			list.add(film);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
-
-		if (rs != null) {
-			rs.close();
-		}
-		if (st != null) {
-			st.close();
-		}
-		if (con != null) {
-			con.close();
-		}
-
 		return list;
 	}
 
-	public Film selectFilmDetails(String Title) throws NamingException, SQLException {
+	public Film selectFilmDetails(String title) throws NamingException, SQLException {
 
-		Context initContext;
-		Context envContext;
-		DataSource ds;
-		Connection con = null;
-		PreparedStatement prst = null;
-
-		initContext = new InitialContext();
-		envContext = (Context) initContext.lookup("java:/comp/env");
-		ds = (DataSource) envContext.lookup("jdbc/orclhr");
-		con = ds.getConnection();
-
-		String sql = "SELECT * FROM FILMS WHERE TITLE=?";
-		prst = con.prepareStatement(sql);
-		prst.setString(1, Title);
-		ResultSet rs = prst.executeQuery();
-
-		Film film2 = new Film();
-		while (rs.next()) {
-			Film film = new Film();
-			film.setFilm_Id(rs.getInt("FILM_ID"));
-			film.setTitle(rs.getString("TITLE"));
-			film.setRegist(rs.getString("REGIST"));
-			film.setExit_Year(rs.getInt("EXIT_YEAR"));
-			film.setQuantity(rs.getInt("QUANTITY"));
-			film2 = film;
-		}
-
-		if (rs != null) {
-			rs.close();
-		}
-		if (prst != null) {
-			prst.close();
-		}
-		if (con != null) {
-			con.close();
-		}
-		return film2;
-	}
-
-	public void addCopies(String Title, int number) {
-
-		Context initContext;
-		Context envContext;
-		DataSource ds;
-		Connection con = null;
-		PreparedStatement prst = null;
-
+		Session session = null;
+		List<Film> list = null;
+		Film film = null;
 		try {
-			initContext = new InitialContext();
-			envContext = (Context) initContext.lookup("java:/comp/env");
-			ds = (DataSource) envContext.lookup("jdbc/orclhr");
-			con = ds.getConnection();
-
-			String sql = "UPDATE FILMS SET QUANTITY=QUANTITY+? WHERE TITLE=?";
-			prst = con.prepareStatement(sql);
-			prst.setInt(1, number);
-			prst.setString(2, Title);
-			prst.executeUpdate();
-			con.commit();
-
-			System.out.println("l'admin ha aggiunto copie ai film rentable");
-			prst.close();
-			con.close();
-
-		} catch (NamingException | SQLException e) {
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			NativeQuery<Film> query = session.createNativeQuery("SELECT * FROM FILMS WHERE TITLE=:TITLEIN");
+			query.addEntity(Film.class);
+			query.setParameter("TITLEIN", title);
+			list = query.list();
+			for (Film f : list) {
+				film = f;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
-			try {
-				con.rollback();
-
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
-			}
-
 		} finally {
-			try {
-				if (prst != null) {
-					prst.close();
-				}
-				if (con != null) {
-					con.close();
-				}
-			} catch (SQLException e) {
-
-				e.printStackTrace();
+			if (session != null) {
+				session.close();
 			}
 		}
+		return film;
+
 	}
 
-	public void removeCopies(String Title, int number) {
+	public void addCopies(String title, int number) {
 
-		Context initContext;
-		Context envContext;
-		DataSource ds;
-		Connection con = null;
-		PreparedStatement prst = null;
+		Session session = null;
 
 		try {
-			initContext = new InitialContext();
-			envContext = (Context) initContext.lookup("java:/comp/env");
-			ds = (DataSource) envContext.lookup("jdbc/orclhr");
-			con = ds.getConnection();
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
 
-			String sql = "UPDATE FILMS SET QUANTITY=QUANTITY-? WHERE TITLE=?";
-			prst = con.prepareStatement(sql);
-			prst.setInt(1, number);
-			prst.setString(2, Title);
-			prst.executeUpdate();
-			con.commit();
+			NativeQuery<Film> query = session.createNativeQuery("UPDATE FILMS SET QUANTITY=QUANTITY+? WHERE TITLE=?");
+			query.addEntity(Film.class);
+			query.setParameter(1, number);
+			query.setParameter(2, title);
+			query.executeUpdate();
 
-			System.out.println("l'admin ha rimosso copie ai film rentable");
-			prst.close();
-			con.close();
+			session.getTransaction().commit();
 
-		} catch (NamingException | SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			try {
-				con.rollback();
-
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
+			if (session != null) {
+				session.getTransaction().rollback();
 			}
-
 		} finally {
-			try {
-				if (prst != null) {
-					prst.close();
-				}
-				if (con != null) {
-					con.close();
-				}
-			} catch (SQLException e) {
-
-				e.printStackTrace();
+			if (session != null) {
+				session.close();
 			}
 		}
 	}
 
-	public Integer[] getNumberOfFilmRentedCopies(List<Film> list) {
+	public void removeCopies(String title, int number) {
 
-		Context initContext;
-		Context envContext;
-		DataSource ds;
-		Connection con = null;
-		PreparedStatement prst = null;
-		Integer[] number = new Integer[list.size()];
+		Session session = null;
 
 		try {
-			initContext = new InitialContext();
-			envContext = (Context) initContext.lookup("java:/comp/env");
-			ds = (DataSource) envContext.lookup("jdbc/orclhr");
-			con = ds.getConnection();
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
 
-			String sql[] = new String[list.size()];
+			NativeQuery<Film> query = session.createNativeQuery("UPDATE FILMS SET QUANTITY=QUANTITY-? WHERE TITLE=?");
+			query.addEntity(Film.class);
+			query.setParameter(1, number);
+			query.setParameter(2, title);
+			query.executeUpdate();
+
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (session != null) {
+				session.getTransaction().rollback();
+			}
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+	}
+
+	public BigDecimal[] getNumberOfFilmRentedCopies(List<Film> list) {
+
+		Session session = null;
+		BigDecimal[] number = new BigDecimal[list.size()];
+		String sql[] = new String[list.size()];
+		NativeQuery<BigDecimal> query = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
 			for (int i = 0; i < list.size(); i++) {
-				sql[i] = "SELECT COUNT(*) FROM FILMRENTED WHERE RETURN_DATE IS NULL AND FILM_ID=?";
-				prst = con.prepareStatement(sql[i]);
-				prst.setInt(1, list.get(i).getFilm_Id());
-				ResultSet rs = prst.executeQuery();
-				while (rs.next()) {
-					number[i] = rs.getInt("COUNT(*)");
-				}
+				query = session.createNativeQuery(
+						"SELECT COUNT(*) FROM FILMRENTED WHERE RETURN_DATE IS NULL AND FILM_ID=:FILMID");
+				query.setParameter("FILMID", list.get(i).getFilmId());
+				number[i] = query.uniqueResult();
 			}
 
-			prst.close();
-			con.close();
-
-			return number;
-
-		} catch (NamingException | SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			try {
-				con.rollback();
-
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
-			}
-			return number;
-
 		} finally {
-
-			try {
-				if (prst != null) {
-					prst.close();
-				}
-				if (con != null) {
-					con.close();
-				}
-			} catch (SQLException e) {
-
-				e.printStackTrace();
+			if (session != null) {
+				session.close();
 			}
 		}
+		return number;
+
 	}
 
-	public int getNumberOfThisFilmRentedCopies(String film_id) {
+	public BigDecimal getNumberOfThisFilmRentedCopies(String filmId) {
 
-		Context initContext;
-		Context envContext;
-		DataSource ds;
-		Connection con = null;
-		PreparedStatement prst = null;
-		ResultSet rs = null;
-		int number = 0;
-
+		Session session = null;
+		BigDecimal ris = null;
 		try {
-			initContext = new InitialContext();
-			envContext = (Context) initContext.lookup("java:/comp/env");
-			ds = (DataSource) envContext.lookup("jdbc/orclhr");
-			con = ds.getConnection();
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
 
-			String sql = "SELECT COUNT(*) FROM FILMRENTED WHERE RETURN_DATE IS NULL AND FILM_ID=" + film_id;
-			prst = con.prepareStatement(sql);
-			rs = prst.executeQuery();
-			while (rs.next()) {
-				number = rs.getInt("COUNT(*)");
-			}
-			rs.close();
-			prst.close();
-			con.close();
+			NativeQuery<BigDecimal> query = session
+					.createNativeQuery("SELECT COUNT(*) FROM FILMRENTED WHERE RETURN_DATE IS NULL AND FILM_ID=:FILMID");
+			query.setParameter("FILMID", filmId);
+			ris = query.uniqueResult();
 
-			return number;
-
-		} catch (NamingException | SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			return number;
-
 		} finally {
-
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (prst != null) {
-					prst.close();
-				}
-				if (con != null) {
-					con.close();
-				}
-			} catch (SQLException e) {
-
-				e.printStackTrace();
+			if (session != null) {
+				session.close();
 			}
 		}
+		return ris;
 	}
 
 	public void addFilm(Film film) {
 
-		Context initContext;
-		Context envContext;
-		DataSource ds;
-		Connection con = null;
-		PreparedStatement prst = null;
+		Session session = null;
 
 		try {
-			initContext = new InitialContext();
-			envContext = (Context) initContext.lookup("java:/comp/env");
-			ds = (DataSource) envContext.lookup("jdbc/orclhr");
-			con = ds.getConnection();
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
 
-			String sql = "INSERT INTO FILMS (TITLE,REGIST,EXIT_YEAR,QUANTITY) VALUES(?,?,?,?)";
-			prst = con.prepareStatement(sql);
-			prst.setString(1, film.getTitle());
-			prst.setString(2, film.getRegist());
-			prst.setInt(3, film.getExit_Year());
-			prst.setInt(4, film.getQuantity());
-			prst.executeUpdate();
-			con.commit();
+			NativeQuery<Film> query = session
+					.createNativeQuery("INSERT INTO FILMS (TITLE,REGIST,EXIT_YEAR,QUANTITY) VALUES(?,?,?,?)");
+			query.addEntity(Film.class);
+			query.setParameter(1, film.getTitle());
+			query.setParameter(2, film.getRegist());
+			query.setParameter(3, film.getExitYear());
+			query.setParameter(4, film.getQuantity());
+			query.executeUpdate();
 
-			System.out.println("l'admin ha aggiunto un nuovo film rentable alla collection");
-			prst.close();
-			con.close();
+			session.getTransaction().commit();
 
-		} catch (NamingException | SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			try {
-				con.rollback();
-
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
+			if (session != null) {
+				session.getTransaction().rollback();
 			}
-
 		} finally {
-			try {
-				if (prst != null) {
-					prst.close();
-				}
-				if (con != null) {
-					con.close();
-				}
-			} catch (SQLException e) {
-
-				e.printStackTrace();
+			if (session != null) {
+				session.close();
 			}
 		}
 	}
 
-	public void removeFilm(String film_id) {
+	public void removeFilm(String filmId) {
 
-		Context initContext;
-		Context envContext;
-		DataSource ds;
-		Connection con = null;
-		PreparedStatement prst = null;
+		Session session = null;
 
 		try {
-			initContext = new InitialContext();
-			envContext = (Context) initContext.lookup("java:/comp/env");
-			ds = (DataSource) envContext.lookup("jdbc/orclhr");
-			con = ds.getConnection();
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
 
-			String sql = "DELETE FROM FILMS WHERE FILM_ID=? ";
-			prst = con.prepareStatement(sql);
-			prst.setInt(1, Integer.parseInt(film_id));
-			prst.executeUpdate();
-			con.commit();
+			NativeQuery<Film> query = session.createNativeQuery("DELETE FROM FILMS WHERE FILM_ID=:FILMID");
+			query.addEntity(Film.class);
+			query.setParameter("FILMID", filmId);
+			query.executeUpdate();
 
-			System.out.println("l'admin ha rimosso un nuovo film rentable alla collection");
-			prst.close();
-			con.close();
+			session.getTransaction().commit();
 
-		} catch (NamingException | SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			try {
-				con.rollback();
-
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
+			if (session != null) {
+				session.getTransaction().rollback();
 			}
-
 		} finally {
-			try {
-				if (prst != null) {
-					prst.close();
-				}
-				if (con != null) {
-					con.close();
-				}
-			} catch (SQLException e) {
-
-				e.printStackTrace();
+			if (session != null) {
+				session.close();
 			}
 		}
+
 	}
 
 }

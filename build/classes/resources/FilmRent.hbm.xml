@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.filmrental.model.FilmRent" table="FILMRENTED">
+
+		<id name="rentId" column="RENT_ID">
+			<generator class="assigned" />
+		</id>
+		<property name="orderDate" column="ORDER_DATE" />
+		<property name="returnDate" column="RETURN_DATE" />
+
+		<many-to-one name="user" class="com.filmrental.model.User"
+			column="USER_ID" />
+		<many-to-one name="film" class="com.filmrental.model.Film" lazy="false"
+			column="FILM_ID" />
+	</class>
+</hibernate-mapping>
+ 

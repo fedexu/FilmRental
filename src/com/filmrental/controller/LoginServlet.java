@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String sessionid = session.getId();
 		if (session.getAttribute("Username") != null) {
-			session.invalidate();
+			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login.jsp");
 			dispatcher.forward(request, response);
 		} else {

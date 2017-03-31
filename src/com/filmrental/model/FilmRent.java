@@ -4,82 +4,58 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class FilmRent {
-	private int Rent_Id;
-	private int User_Id;
-	private String Username;
-	private int Film_Id;
-	private String Title;
-	private Date Order_Date;
-	private Date Return_Date;
+
+	private int rentId;
+	private Date orderDate;
+	private Date returnDate;
+	private User user;
+	private Film film;
 
 	public FilmRent() {
-		Rent_Id = 0;
-		User_Id = 0;
-		Username = null;
-		Film_Id = 0;
-		Title = null;
+
 	}
 
-	// set e get di Film_Id
-	public void setFilm_Id(int Film_Id) {
-		this.Film_Id = Film_Id;
+	// set get rentId
+	public void setRentId(int rentId) {
+		this.rentId = rentId;
 	}
 
-	public int getFilm_Id() {
-		return this.Film_Id;
+	public int getRentId() {
+		return this.rentId;
 	}
 
-	// set get Title
-	public void setTitle(String Title) {
-		this.Title = Title;
+	// set get orderDate
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
 
-	public String getTitle() {
-		return this.Title;
+	public Date getOrderDate() {
+		return this.orderDate;
 	}
 
-	// set get User_Id
-	public void setUser_Id(int User_id) {
-		this.User_Id = User_id;
+	// set get returnDate
+	public void setReturnDate(Date returnDate) {
+		this.returnDate = returnDate;
 	}
 
-	public int getUser_Id() {
-		return this.User_Id;
+	public Date getReturnDate() {
+		return this.returnDate;
 	}
 
-	// set get Username
-	public void setUsername(String Username) {
-		this.Username = Username;
+	public User getUser() {
+		return user;
 	}
 
-	public String getUsername() {
-		return this.Username;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	// set get Rent_ID
-	public void setRent_Id(int Rent_Id) {
-		this.Rent_Id = Rent_Id;
+	public Film getFilm() {
+		return film;
 	}
 
-	public int getRent_Id() {
-		return this.Rent_Id;
-	}
-
-	// set get Order_Date
-	public void setOrder_Date(Date Order_Date) {
-		this.Order_Date = Order_Date;
-	}
-
-	public Date getOrder_Date() {
-		return this.Order_Date;
-	}
-	// set get Return_Date
-	public void setReturn_Date(Date Return_Date) {
-		this.Return_Date = Return_Date;
-	}
-
-	public Date getReturn_Date() {
-		return this.Return_Date;
+	public void setFilm(Film film) {
+		this.film = film;
 	}
 
 }

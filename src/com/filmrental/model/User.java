@@ -1,62 +1,78 @@
 package com.filmrental.model;
 
+import java.util.List;
+
 public class User {
-	private int User_Id;
-	private String Username;
-	private String U_Pass;
-	private String First_Name;
-	private String Last_Name;
+	private int userId;
+	private String username;
+	private String pass;
+	private String firstName;
+	private String lastName;
+	private List<FilmRent> filmRented;
+	private List<FilmRequest> filmRequest;
 
 	public User() {
-		User_Id = 0;
-		Username = null;
-		U_Pass = null;
-		First_Name = null;
-		Last_Name = null;
+		userId = 0;
+		username = null;
+		pass = null;
+		firstName = null;
+		lastName = null;
 	}
 
-	// set get User_Id
-	public void setUser_Id(int User_id) {
-		this.User_Id = User_id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public int getUser_Id() {
-		return this.User_Id;
-	}
-
-	// set get Username
-	public void setUsername(String Username) {
-		this.Username = Username;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
-		return this.Username;
+		return username;
 	}
 
-	// Set get U_Pass
-	public void setU_Pass(String U_Pass) {
-		this.U_Pass = U_Pass;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getU_Pass() {
-		return this.U_Pass;
+	public String getPass() {
+		return pass;
 	}
 
-	// set get First_Name
-	public void setFirst_Name(String First_Name) {
-		this.First_Name = First_Name;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
-	public String getFirst_Name() {
-		return this.First_Name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	// set get Last_Name
-	public void setLast_Name(String Last_Name) {
-		this.Last_Name = Last_Name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLast_Name() {
-		return this.Last_Name;
+	public String getLastName() {
+		return lastName;
 	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public List<FilmRent> getFilmRented() {
+		return filmRented;
+	}
+
+	public void setFilmRented(List<FilmRent> filmRented) {
+		this.filmRented = filmRented;
+	}
+
+	public List<FilmRequest> getFilmRequest() {
+		return filmRequest;
+	}
+
+	public void setFilmRequest(List<FilmRequest> filmRequest) {
+		this.filmRequest = filmRequest;
+	}
+
 }

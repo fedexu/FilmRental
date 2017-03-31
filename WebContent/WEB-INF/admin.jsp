@@ -50,14 +50,14 @@
 				<form action="/FilmRental/login/admin/removefromcollaction"
 					method="post">
 					<tr>
-						<td><%=f.getFilm_Id()%><input type="hidden" name="Film_Id"
-							value="<%=f.getFilm_Id()%>" /></td>
+						<td><%=f.getFilmId()%><input type="hidden" name="Film_Id"
+							value="<%=f.getFilmId()%>" /></td>
 						<td><%=f.getTitle()%><input type="hidden" name="Title"
 							value="<%=f.getTitle()%>" /></td>
 						<td><%=f.getRegist()%><input type="hidden" name="Regist"
 							value="<%=f.getRegist()%>" /></td>
-						<td><%=f.getExit_Year()%><input type="hidden"
-							name="Exit_Year" value="<%=f.getExit_Year()%>" /></td>
+						<td><%=f.getExitYear()%><input type="hidden"
+							name="Exit_Year" value="<%=f.getExitYear()%>" /></td>
 						<td><%=f.getQuantity()%><input type="hidden" name="Quantity"
 							value="<%=f.getQuantity()%>" /></td>
 						<td><button type="submit">Delete this Copy</button> <input
@@ -137,13 +137,13 @@
 			%>
 			<form action="/FilmRental/login/admin/addtocollaction" method="post">
 				<tr>
-					<td><%=req.getUser_Id()%></td>
+					<td><%=req.getUserId()%></td>
 					<td><%=req.getTitle()%><input type="hidden"
 						name="Add_Title" value="<%=req.getTitle()%>" /></td>
 					<td><%=req.getRegist()%><input type="hidden"
 						name="Add_Regist" value="<%=req.getRegist()%>" /></td>
-					<td><%=req.getExit_Year()%><input type="hidden"
-						name="Add_Exit_Year" value="<%=req.getExit_Year()%>" /></td>
+					<td><%=req.getExitYear()%><input type="hidden"
+						name="Add_Exit_Year" value="<%=req.getExitYear()%>" /></td>
 					<td><input type="txt" name="Add_Quantity" /></td>
 					<td><button type="submit">Add film</button> <input
 						type="hidden" name="addfilm" value="on" /></td>

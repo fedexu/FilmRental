@@ -40,7 +40,7 @@ public class Store {
 	}
 
 	public List<FilmRent> addFilmRentedByUser(User user, String[] controller) throws NamingException, SQLException {
-		DBFilms f = new DBFilms();
+	
 		DBFilmRent fr = new DBFilmRent();
 		List<Film> list = filmRentable();
 		List<FilmRent> listrented = fr.selectFilmsRentByUserId(user);
@@ -69,10 +69,10 @@ public class Store {
 	public void addRequestByUser(User user,String Title,String Regist,String Exit_Year){
 		DBFilmRequest req = new DBFilmRequest();
 		FilmRequest filmreq = new FilmRequest();
-		filmreq.setUser_Id(user.getUser_Id());
+		filmreq.setUserId(user.getUserId());
 		filmreq.setTitle(Title);
 		filmreq.setRegist(Regist);
-		filmreq.setExit_Year(Integer.parseInt(Exit_Year));
+		filmreq.setExitYear(Integer.parseInt(Exit_Year));
 		req.addFilmRequest(filmreq);		
 	}
 	
@@ -81,7 +81,7 @@ public class Store {
 		DBFilms f = new DBFilms();
 		film.setTitle(Title);
 		film.setRegist(Regist);
-		film.setExit_Year(Integer.parseInt(Exit_Year));
+		film.setExitYear(Integer.parseInt(Exit_Year));
 		film.setQuantity(Integer.parseInt(Quantity));
 		f.addFilm(film);
 	}
@@ -89,7 +89,8 @@ public class Store {
 	public Boolean removeFilmByAdmin(String film_id){
 		DBFilms f = new DBFilms();
 		Boolean ris = false;
-		if(f.getNumberOfThisFilmRentedCopies(film_id)==0){
+		int num = f.getNumberOfThisFilmRentedCopies(film_id).intValueExact();
+		if(num==0){
 		f.removeFilm(film_id);
 		ris= true;
 		}

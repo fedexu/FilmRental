@@ -1,0 +1,33 @@
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+		<!-- Database connection settings -->
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.connection.username">HR</property>
+		<property name="hibernate.connection.password">HR</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@127.0.0.1:1521:orcl</property>
+
+		<!-- SQL dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+		<!-- Echo all executed SQL to sysout -->
+		<property name="show_sql">true</property>
+		
+<!-- 		sessionFactory  initialization lazy pemritted config -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- Create/Update the database schema on startup -->
+		<!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+		<!-- Mapping file -->
+		<mapping resource="/resources/Film.hbm.xml" />
+		<mapping resource="/resources/FilmRent.hbm.xml" />
+		<mapping resource="/resources/FilmRequest.hbm.xml" />
+		<mapping resource="/resources/User.hbm.xml" />
+	</session-factory>
+
+</hibernate-configuration>

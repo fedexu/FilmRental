@@ -1,62 +1,73 @@
 package com.filmrental.model;
 
+import java.util.List;
+
 public class Film {
-	private int Film_Id;
-	private String Title;
-	private String Regist;
-	private int Exit_Year;
-	private int Quantity;
+	private int filmId;
+	private String title;
+	private String regist;
+	private int exitYear;
+	private int quantity;
+	private List<FilmRent> filmRented;
 
 	public Film() {
-		Film_Id = 0;
-		Title = null;
-		Regist = null;
-		Exit_Year = 0;
-		Quantity = 0;
+		filmId = 0;
+		title = null;
+		regist = null;
+		exitYear = 0;
+		quantity = 0;
 	}
 
-	// set e get di Film_Id
-	public void setFilm_Id(int Film_Id) {
-		this.Film_Id = Film_Id;
+	// set e get di filmId
+	public void setFilmId(int filmId) {
+		this.filmId = filmId;
 	}
 
-	public int getFilm_Id() {
-		return this.Film_Id;
+	public int getFilmId() {
+		return this.filmId;
 	}
 
-	// set get Title
-	public void setTitle(String Title) {
-		this.Title = Title;
+	// set get title
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getTitle() {
-		return this.Title;
+		return this.title;
 	}
 
-	// set get Regist
-	public void setRegist(String Regist) {
-		this.Regist = Regist;
+	// set get regist
+	public void setRegist(String regist) {
+		this.regist = regist;
 	}
 
 	public String getRegist() {
-		return this.Regist;
+		return this.regist;
 	}
 
-	// set e get di Exit_Year
-	public void setExit_Year(int Exit_Year) {
-		this.Exit_Year = Exit_Year;
+	// set e get di exitYear
+	public void setExitYear(int exitYear) {
+		this.exitYear = exitYear;
 	}
 
-	public int getExit_Year() {
-		return this.Exit_Year;
+	public int getExitYear() {
+		return this.exitYear;
 	}
 
-	// set e get di Quantity
-	public void setQuantity(int Quantity) {
-		this.Quantity = Quantity;
+	// set e get di quantity
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public int getQuantity() {
-		return this.Quantity;
+		return this.quantity;
+	}
+
+	public List<FilmRent> getFilmRented() {
+		return filmRented;
+	}
+
+	public void setFilmRented(List<FilmRent> filmRented) {
+		this.filmRented = filmRented;
 	}
 }

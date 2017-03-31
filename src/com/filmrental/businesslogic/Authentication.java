@@ -15,29 +15,25 @@ public class Authentication {
 	public Authentication() {
 	}
 
-	public boolean matchUser(String Username, String U_Pass) {
+	public boolean matchUser(String username, String u_Pass) {
 		user = new DBUsers();
-		try {
-			List<User> list = user.selectAllUsers();
-			for (int i =0;i<list.size();i++) {
-				if (list.get(i).getUsername().equals(Username) && list.get(i).getU_Pass().equals(U_Pass)) {
-					ris = true;
-					break;
-				} else {
-					ris = false;
-				}
+		List<User> list =  user.selectUserByCredential(username, u_Pass);
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getUsername().equals(username) && list.get(i).getPass().equals(u_Pass)) {
+				ris = true;
+				break;
+			} else {
+				ris = false;
 			}
-		} catch (NamingException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+
 		return ris;
 	}
 
-	public boolean isAdmin(String Username, String U_Pass) {
+	public boolean isAdmin(String username, String u_Pass) {
 		Authentication a = new Authentication();
-		if (a.matchUser(Username, U_Pass)) {
-			if (Username.equals("admin") && U_Pass.equals("admin")) {
+		if (a.matchUser(username, u_Pass)) {
+			if (username.equals("admin") && u_Pass.equals("admin")) {
 				ris = true;
 			} else {
 				ris = false;

@@ -3,7 +3,8 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.filmrental.model.Film"%>
 <%@ page import="com.filmrental.model.User"%>
-<%@ page import="com.filmrental.model.FilmRent"%>
+<%@ page import="com.filmrental.model.FilmRentVO"%>
+<%@ page import="java.math.BigDecimal" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,21 +39,21 @@
 				if (request.getAttribute("films") != null) {
 					int i = 0;
 					List<Film> list = (List<Film>) request.getAttribute("films");
-					Integer[] number = (Integer[]) request.getAttribute("number");
+					BigDecimal[] number = (BigDecimal[]) request.getAttribute("number");
 
 					for (Film f : list) {
-						int n = f.getQuantity() - number[i];
+						int n = f.getQuantity() - number[i].intValueExact();
 			%>
 			<form action="/FilmRental/login/user/rentfilm" method="post">
 				<tr>
-					<td><%=f.getFilm_Id()%><input type="hidden"
-						name="Film_Id<%=i%>" value="<%=f.getFilm_Id()%>" /></td>
+					<td><%=f.getFilmId()%><input type="hidden"
+						name="Film_Id<%=i%>" value="<%=f.getFilmId()%>" /></td>
 					<td><%=f.getTitle()%><input type="hidden" name="Title<%=i%>"
 						value="<%=f.getTitle()%>" /></td>
 					<td><%=f.getRegist()%><input type="hidden" name="Regist<%=i%>"
 						value="<%=f.getRegist()%>" /></td>
-					<td><%=f.getExit_Year()%><input type="hidden"
-						name="Exit_Year<%=i%>" value="<%=f.getExit_Year()%>" /></td>
+					<td><%=f.getExitYear()%><input type="hidden"
+						name="Exit_Year<%=i%>" value="<%=f.getExitYear()%>" /></td>
 					<td><%=n%><input type="hidden" name="Quantity<%=i%>"
 						value="<%=n%>" /></td>
 					<td><button type="submit">Rent a Copy</button> <input
@@ -74,7 +75,7 @@
 	<div>
 		<h2>Film Rented</h2>
 		<%
-			List<FilmRent> listrented = (List<FilmRent>) request.getAttribute("ListRented");
+			List<FilmRentVO> listrented = (List<FilmRentVO>) request.getAttribute("ListRented");
 			if (listrented != null) {
 		%>
 		<table>
@@ -87,16 +88,17 @@
 			</tr>
 			<%
 				int j = 0;
-					for (FilmRent fr : listrented) {
+					for (FilmRentVO fr : listrented) {
+						Film film = fr.getFilm();
 			%>
 			<form action="/FilmRental/login/user/returnfilm" method="post">
 				<tr>
-					<td><%=fr.getRent_Id()%><input type="hidden" name="Rent_Id"
-						value="<%=fr.getRent_Id()%>" /></td>
-					<td><%=fr.getFilm_Id()%><input type="hidden" name="Film_Id"
-						value="<%=fr.getFilm_Id()%>" /></td>
-					<td><%=fr.getTitle()%></td>
-					<td><%=fr.getOrder_Date()%></td>
+					<td><%=fr.getRentId()%><input type="hidden" name="Rent_Id"
+						value="<%=fr.getRentId()%>" /></td>
+					<td><%=film.getFilmId()%><input type="hidden" name="Film_Id"
+						value="<%=film.getFilmId()%>" /></td>
+					<td><%=film.getTitle()%></td>
+					<td><%=fr.getOrderDate()%></td>
 					<td><button type="submit">Return this copy</button> <input
 						type="hidden" name="returnfilm" value="on" /></td>
 				</tr>
