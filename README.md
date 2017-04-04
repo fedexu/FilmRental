@@ -27,17 +27,19 @@ Admins can:
 
 
 Technologies and frameworks used in this project version (branch dev_lt_jdbc):
-- Apache Tomcat 8.0.39(Container Server)
-- JDBC API  (Persistance)
-- Oracle SQL Developer 4.1.5.21(DB)
+- Apache Tomcat v.8.0.39(Container Server)
+- Oracle JDBC API v.11.2.0.3 (Persistance)
+- Oracle DB v.11g (DB)
 
 ============================================================================================
+
 FIRST UPDATE : (DATABASE MANAGEMENT SYSTEM - ORACLE DBMS and JDBC API)
 In the first version of this project (don't published on this Repository), we used to emulate
 the storage and persistence of data informations using a few csv files, handled by some 
 DAO and business logic's classes.
 Instead of using different csv files, we introduce Oracle DBMS. Here we define a new DB_SCHEMA
 and we created some Stored Procedures who will be called by JDBC API on the App.
+
 ============================================================================================
 
 This is released as an Eclipse project WITHOUT Maven.
