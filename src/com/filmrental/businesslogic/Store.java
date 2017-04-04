@@ -73,13 +73,23 @@ public class Store {
 		return listrented;
 	}
 	
-	public void addRequestByUser(User user,String Title,String Regist,String Exit_Year){
+	public void addRequestByUser(User user,String title,String regist,String exit_Year){
 		DBFilmRequest req = new DBFilmRequest();
 		FilmRequest filmreq = new FilmRequest();
 		filmreq.setUserId(user.getUserId());
-		filmreq.setTitle(Title);
-		filmreq.setRegist(Regist);
-		filmreq.setExitYear(Integer.parseInt(Exit_Year));
+		filmreq.setTitle(title);
+		filmreq.setRegist(regist);
+		filmreq.setExitYear(Integer.parseInt(exit_Year));
+		req.addFilmRequest(filmreq);		
+	}
+	
+	public void addRequestByUser(int userId,String title,String regist,int exit_Year){
+		DBFilmRequest req = new DBFilmRequest();
+		FilmRequest filmreq = new FilmRequest();
+		filmreq.setUserId(userId);
+		filmreq.setTitle(title);
+		filmreq.setRegist(regist);
+		filmreq.setExitYear(exit_Year);
 		req.addFilmRequest(filmreq);		
 	}
 	

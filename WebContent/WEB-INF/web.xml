@@ -22,7 +22,26 @@
     <servlet-name>DispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-
+  
+  
+  <!--   WS SERVLET -->
+    <listener>
+        <listener-class>
+        	com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+        </listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>ws</servlet-name>
+        <servlet-class>
+        	com.sun.xml.ws.transport.http.servlet.WSServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ws</servlet-name>
+        <url-pattern>/ws</url-pattern>
+    </servlet-mapping>
+    
 
 <!-- Resource del DB ORACLE -->
 	<resource-ref>

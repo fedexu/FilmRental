@@ -29,17 +29,21 @@ Admins can:
 Technologies and frameworks used in this project version (branch dev_lt_spring_mvc):
 - Apache Tomcat v.8.0.39(Container Server)
 - Spring v.4.3.6 (MVC)
+- Spring ws core v.2.4.0 (WS)
 - Hibernate v.5.2.8 (Persistance) with JPA ANNOTATION
 - Oracle DB v.11g (DB)
 
 ============================================================================================
 
-4TH UPDATE : (SPRING MVC FRAMEWORK )
-Untill this moment, the architectural pattern MVC was handled and managed by the Container Server 
-Apache Tomcat, using different servlet and jsp pages configured in a web.xml file and 
-defined servlet-classes.
-On this branch we introduce Spring MVC that use different API for defining a Dispatcher Servlet 
-and his relative Controller classes.
+5TH UPDATE : (WEB SERVICE - SOAP)
+Using JAX-WS and Spring-ws-core, we provided a simple SOAP web service with a few methods to 
+handle list of film request and add new request outside of the Web App. 
+On web App's: suggestions are proposed by users internally, instead here they are offered to
+ other resources.
+ - SEI approach: Service Endpoint Interface. The endpoint is still defined passing by 
+ a @WebService interface, and also a sun-jaxws.xml using namespaces. The Controller classes 
+ are still handled by the Dispatcher Servlet, but the /?wsdl request, are handled by another 
+ Servlet provided by JAX-WS.
 
 ============================================================================================
 
