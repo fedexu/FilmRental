@@ -26,7 +26,7 @@ Admins can:
 - View the suggestion list and move one into the catalogue (specifying the number of copies)
 
 
-Technologies and frameworks used in this project version (branch dev_lt_jdbc):
+Technologies and frameworks used in this project version (branch dev_lt_hb_hbm):
 - Apache Tomcat v.8.0.39(Container Server)
 - Hibernate v.5.2.8 (Persistance)
 - Oracle DB v.11g (DB)
