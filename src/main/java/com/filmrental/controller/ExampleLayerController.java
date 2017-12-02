@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.filmrental.RestResponseEntity;
 import com.filmrental.form.entities.ExampleControllerMethodInput;
 import com.filmrental.service.ExampleLayerService;
 
@@ -31,10 +32,11 @@ public class ExampleLayerController {
 	 * 
 	 * @return {@link String} risultato
 	 */
-	@RequestMapping(value="method", method=RequestMethod.POST)
-	public String exampleControllerMethod(@RequestBody ExampleControllerMethodInput exampleControllerMethodInput) {
-		
-		return exampleLayerService.exampleServiceMethod(exampleControllerMethodInput);
+	@RequestMapping(value="method", method=RequestMethod.POST, produces = "application/json")
+	public RestResponseEntity<String> exampleControllerMethod(@RequestBody ExampleControllerMethodInput exampleControllerMethodInput) {
+
+		return new RestResponseEntity<>(exampleLayerService.exampleServiceMethod(exampleControllerMethodInput));
 	}
+	
 	
 }

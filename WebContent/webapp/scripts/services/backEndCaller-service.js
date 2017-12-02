@@ -15,7 +15,7 @@ angular.module('filmRental').service('backEndCaller', function ($http) {
 			  //Payload di chiamata
 			  data: {}
 			}).then(function successCallback(response) {
-				return response.data;
+				return response.data.payload;
 		  }, function errorCallback(response) {
 			  console.log("errore di chiamata ExampleControllerMethodCaller");
 		      //Implementare un eventuale gestione del caso di errore di chiamata
