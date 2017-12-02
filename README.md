@@ -13,15 +13,15 @@ Here you will find a simple example of the following technologies and frameworks
 The project is the solution of an exercise that was given to me in the form of the
 following requirements:
 
-============================================================================================
-MENTOR UPDATE
+============================ MENTOR UPDATE ==================================
 
 The project was refactor and review for a fast developer starter project. 
 For now the requirements is the same but the architecture of the project is solid and stable.
 Interns need now to complete the integration of the Hibernate mapping and start to develop the feature required 
 
 
-============================================================================================
+=============================================================================
+
 The project simulates a Video Rental service with users and admins.
 
 Users can: 
