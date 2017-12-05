@@ -15,9 +15,9 @@ following requirements:
 
 ============================ MENTOR UPDATE ==================================
 
-The project was refactor and review for a fast developer starter project. 
-For now the requirements is the same but the architecture of the project is solid and stable.
-Interns need now to complete the integration of the Hibernate mapping and start to develop the feature required 
+The project was refactored and reviewed for a faster start-up project.
+For now the requirements is the same but the architecture of the project is more solid and stable.
+Interns are now require to complete the integration of the Hibernate mapping and start developing the required features on the business logic. The title mentor is meant to be purely ironic.
 
 
 =============================================================================

@@ -11,7 +11,7 @@ import com.filmrental.repositories.CityRepository;
 
 /**
  * Service per gestire la business logic, la logica si scrive qui. 
- * Un service puo chiamare repositoryes o altre service piu basse.
+ * Un service puo chiamare repositories o altri service piu bassi.
  * 
  * @author Federico Peruzzi
  * @version
