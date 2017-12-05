@@ -8,7 +8,7 @@ angular.module('filmRental').directive('helloWorld', function () {
 		restrict: 'EA',
 		scope: true,
 		//html che verra chiamato dalla direttiva appena definita
-		templateUrl: '/FilmRental/webapp/views/helloWorld.html',
+		templateUrl: '/FilmRental/views/helloWorld.html',
 		link : function(scope, elm, $attrs) {
 			//possibilita di inserire piu funzioni.
 		    scope.$watch("esempio", function(newValue, oldValue) {
