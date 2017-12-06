@@ -1,3 +1,6 @@
+General information Java web
+https://www.journaldev.com/1854/java-web-application-tutorial-for-beginners
+
 Java JDK Installation
 http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
