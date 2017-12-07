@@ -14,7 +14,7 @@ import com.filmrental.ws.service.CityServiceImpl;
 import com.filmrental.ws.service.HelloServiceImpl;
 
 /**
- * Entry point di configurazione per i servizi WS
+ * Entry point for WS configuration
  * 
  * @author Federico Peruzzi
  * @version 1.0
@@ -31,9 +31,9 @@ public class WebServiceConfig {
     private CityRepository cityRepository;
     
     /**
-     * 	Definizione del bean per l'inizializzazione dell'endPoint del servizio HelloService
+     * 	Bean definition for the EndPoint initialization of the HelloService
      * @return
-     * 		Ritorna la classe di endpoint pubblicata sull'applicativo
+     * 		Returns the endpoint class published on the application
      */
     @Bean
     public Endpoint helloServiceEndpoint() {
@@ -43,9 +43,9 @@ public class WebServiceConfig {
     }
     
     /**
-     * 	Definizione del bean per l'inizializzazione dell'endPoint del servizio CityService
+     *  Bean definition for the EndPoint initialization of the CityService
      * @return
-     * 		Ritorna la classe di endpoint pubblicata sull'applicativo
+     * 		Returns the endpoint class published on the application
      */
     @Bean
     public Endpoint cityServiceEndpoint() {

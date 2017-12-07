@@ -11,7 +11,7 @@ import javax.xml.ws.ResponseWrapper;
 import com.filmrental.entities.City;
 
 /**
- * Interfaccia dichairativa del servizio "CityService"
+ * Declaration of the interface service "CityService".
  * 
  * @author Federico Peruzzi
  * @version 1.0
@@ -21,7 +21,7 @@ import com.filmrental.entities.City;
 public interface CityService {
 	
 	/**
-	 * Definizione dell'oggetto request e response tramite le annotazioni Jws
+	 * Definition of the request and response object throught JWS annotation.
 	 * 
 	 * @param myname
 	 * @return

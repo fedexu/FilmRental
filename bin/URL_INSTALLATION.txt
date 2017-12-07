@@ -1,0 +1,27 @@
+General information Java web
+https://www.journaldev.com/1854/java-web-application-tutorial-for-beginners
+
+Java JDK Installation
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+MYSQL installation
+https://dev.mysql.com/downloads/installer/
+
+Eclipse Installation
+https://www.eclipse.org/downloads/
+
+WebServer Tomcat
+https://tomcat.apache.org/download-80.cgi
+
+Maven Installation
+https://maven.apache.org/download.cgi
+
+Guide
+https://maven.apache.org/install.html
+
+Documentazione DB
+https://dev.mysql.com/doc/sakila/en/
+
+Documentazione Angular
+https://www.infragistics.com/community/blogs/dhananjay_kumar/archive/2015/06/11/understanding-scopes-in-angularjs-custom-directives.aspx 
+https://coderwall.com/p/14rwpg/angular-directive-accessing-the-controller 

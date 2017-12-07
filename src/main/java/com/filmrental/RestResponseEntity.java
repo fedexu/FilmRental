@@ -1,7 +1,7 @@
 package com.filmrental;
 
 /**
- * Wrapper generico di risposta per una chiamata REST
+ * Generic output wrapper for a REST call
  * 
  * @author Federico Peruzzi
  * @version 1.0
@@ -10,7 +10,7 @@ package com.filmrental;
 public class RestResponseEntity<T> {
 
 	/**
-	 * Costruttore generico con l'oggetto payload
+	 * Generic constructor with the payload object
 	 * 
 	 * @param payload
 	 */
@@ -20,7 +20,7 @@ public class RestResponseEntity<T> {
 	}
 
 	/**
-	 * La proprieta payload deve contenere l'oggetto di risposta utile della logica di business
+	 * The payload field needs to hold the output object of the business logic 
 	 */
 	private T payload;
 

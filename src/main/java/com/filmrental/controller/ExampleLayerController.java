@@ -11,8 +11,8 @@ import com.filmrental.form.entities.ExampleControllerMethodInput;
 import com.filmrental.service.ExampleLayerService;
 
 /**
- * Controller per gestire gli entry point applicativi.
- * Non si scrive logica qui.
+ * Controller to handle the application entryPoints.
+ * We don't write business logic here.
  * 
  * @author Federico Peruzzi
  * @version
@@ -26,11 +26,11 @@ public class ExampleLayerController {
 	private ExampleLayerService exampleLayerService;
 	
 	/**
-	 * Esempio di impelemtazione entry-point applicativo REST
+	 * Example of an entryPoint implementation for a REST call
 	 * 
 	 * @param id {@link ExampleControllerMethodInput} 
 	 * 
-	 * @return {@link String} risultato
+	 * @return {@link String} result
 	 */
 	@RequestMapping(value="method", method=RequestMethod.POST, produces = "application/json")
 	public RestResponseEntity<String> exampleControllerMethod(@RequestBody ExampleControllerMethodInput exampleControllerMethodInput) {

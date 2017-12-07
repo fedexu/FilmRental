@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Entity per la tabella City
+ * Entity for table City
  * 
  * @author Federico Peruzzi
  * @version 1.0

@@ -3,7 +3,7 @@ package com.filmrental.ws.service;
 import javax.jws.WebService;
 
 /**
- * Classe implementante del servizio "HelloService"
+ * Implementation of the service "HelloService".
  * 
  * @author Federico Peruzzi
  * @version 1.0
@@ -15,9 +15,9 @@ import javax.jws.WebService;
 public class HelloServiceImpl implements HelloService {
 
 	/**
-	 * Metodo contenente l'implementazione effettiva del WS. 
-	 * E' l'entripoint applicativo dal quale possiamo agganciare tutti i @Service 
-	 * necessari per la logica applicativa.
+	 * Method with the implementation of the WS service. 
+	 * The application entry point where we can link all @service object nedded 
+	 * for the business logic. 
 	 * 
 	 */
     public String sayHello(String myname) {

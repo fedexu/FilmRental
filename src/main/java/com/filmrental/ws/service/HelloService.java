@@ -8,7 +8,7 @@ import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
 /**
- * Interfaccia dichairativa del servizio "HelloService"
+ * Declaration of the interface service "HelloService".
  * 
  * @author Federico Peruzzi
  * @version 1.0
@@ -18,7 +18,7 @@ import javax.xml.ws.ResponseWrapper;
 public interface HelloService {
 	
 	/**
-	 * Definizione dell'oggetto request e response tramite le annotazioni Jws
+	 * Definition of the request and response object trougth JWS annotation.
 	 * 
 	 * @param myname
 	 * @return

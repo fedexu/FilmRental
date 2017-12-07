@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.WebApplicationInitializer;
 
 /**
- * Entry point di configurazione spring boot
+ * Entry point for spring boot configuration
  * 
  * @author Federico Peruzzi
  * @version 1.0

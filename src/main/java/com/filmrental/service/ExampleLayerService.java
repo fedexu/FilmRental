@@ -10,8 +10,8 @@ import com.filmrental.form.entities.ExampleControllerMethodInput;
 import com.filmrental.repositories.CityRepository;
 
 /**
- * Service per gestire la business logic, la logica si scrive qui. 
- * Un service puo chiamare repositories o altri service piu bassi.
+ * Service class for handling and implementing the business logic.
+ * A service class can call a repository or other services on a lower. 
  * 
  * @author Federico Peruzzi
  * @version
@@ -25,7 +25,7 @@ public class ExampleLayerService {
 	private CityRepository cityRepository;
 	
 	/**
-	 * Esempio di impelemtazione di logica applicativa
+	 * Example of an implementation of business logic.
 	 * 
 	 * @param id {@link ExampleControllerMethodInput} 
 	 * 
@@ -33,9 +33,9 @@ public class ExampleLayerService {
 	 */
 	public String exampleServiceMethod(ExampleControllerMethodInput exampleControllerMethodInput){
 		
-		List<City> l = cityRepository.findAll();
+		List<City> cityList = cityRepository.findAll();
 		
-		return "ho trovato "+l.size()+" citta";
+		return "ho trovato "+cityList.size()+" citta";
 	}
 	
 }

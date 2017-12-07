@@ -10,7 +10,7 @@ import com.filmrental.entities.City;
 import com.filmrental.repositories.CityRepository;
 
 /**
- * Classe implementante del servizio "HelloService"
+ * Implementation of the service "CityService".
  * 
  * @author Federico Peruzzi
  * @version 1.0

@@ -1,24 +1,24 @@
 /**
- * 	Angular Service that can be used from all the components of the AngularJs application.
- *	The service uses the injection $http that we use for calling the Back-end asynchronous.
+ * Servizio angular fruibile a tutte le componenti dell'app angular
+ * Il servizio si occupa di gestire l'injection della componente $http che si utilizza per fare le chiamate a Back-end
  * 
  */
 angular.module('filmRental').service('backEndCaller', function ($http) {
 	
-	//	Call of the Java service EcampleControllerMethod, the method return a promise to the caller.
+	//chiamata al servizio Java ExampleControllerMethod, promise ritornata al chiamante
 	this.exampleControllerMethodCaller = function(parametri){
 		return 	$http({
-			  //	Type of the call.
+			  //tipo di chiamata
 			  method: 'POST',
-			  //	URL of the call.
+			  //URL di chiamata
 			  url: 'http://localhost:8080/FilmRental/example/method',
-			  //	Payload of the call.
+			  //Payload di chiamata
 			  data: {}
 			}).then(function successCallback(response) {
 				return response.data.payload;
 		  }, function errorCallback(response) {
 			  console.log("errore di chiamata ExampleControllerMethodCaller");
-			  //	Manage of the error returned from Back-end
+		      //Implementare un eventuale gestione del caso di errore di chiamata
 		  });
 	};
 });

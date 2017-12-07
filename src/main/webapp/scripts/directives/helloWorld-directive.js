@@ -1,26 +1,30 @@
 /**
- * Directive di esempio con cui andiamo a caricare il file HTML "helloWorld.html" 
- * associando come controller il file "helloWorld-controller.js" tramite il nome definito in angular "helloWorldController"
+ * 	Example directive where we are going to load the HTML file "helloWorld.html"
+ * 	with the controller "helloWorld-controller.js" file associated trougth the angular name injection "helloWorldController".
  * 
  */
 angular.module('filmRental').directive('helloWorld', function () {
 	return {
 		restrict: 'EA',
 		scope: true,
-		//html che verra chiamato dalla direttiva appena definita
+		//	The HTML loaded by the defined directive. 
 		templateUrl: '/FilmRental/views/helloWorld.html',
 		link : function(scope, elm, $attrs) {
-			//possibilita di inserire piu funzioni.
+			//	we can add function in the link property of the directive
 		    scope.$watch("esempio", function(newValue, oldValue) {
-		    	//un watch linkato nella direttiva. 
-		    	//Esempio se dovesse servire un controllo continuativo su variabili 
-		    	//che stanno sopra la direttiva e non all'interno
+		    	/*
+		    	 * 	Example watch linked into the directive.
+		    	 * 	If we need to add a watch to the variable that are 
+		    	 * 	above the directive and not inside it we need to define it here.
+		    	 */
 		    });
 		 },
-		//collegamento al file di Controller che si decide di usare all'interno di una directive
+		//	Injection of the controller we decided to use inside this directive.
 		controller: 'helloWorldController',
-		//ridenominazione del controller. Con questo prefisso si possono vedere in pagina (negli html gestiti dalla direttiva)
-		//i valori propri dell'oggetto controller, quindi tutte le variabili all'interno del controller chiamate con "this."
+		/*
+		 * 	Redefinition of the controller name. With this prefix we can use into the page (into the HTML managed from this directive)
+		 *	the controller value witch means all the variable declared into the controller defined with "this".
+		 */ 
 		controllerAs: 'ctrl'
 	  };
 });
