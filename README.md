@@ -17,11 +17,15 @@ following requirements:
 
 The project was refactored and reviewed for a faster start-up project.
 For now the requirements is the same but the architecture of the project is more solid and stable.
-Interns are now require to complete the integration of the Hibernate mapping and start developing the required features on the business logic. The title mentor is meant to be purely ironic.
+Interns are now require to complete the integration of the Hibernate mapping and start developing the required features on the business logic. 
+The title mentor is meant to be purely ironic.
 
 
 =============================================================================
 
+
+ASSIGNMENT:
+=========================
 The project simulates a Video Rental service with users and admins.
 
 Users can: 
@@ -38,6 +42,27 @@ Admins can:
 
 A record of all the rents must be maintained in the DB: it has to include rental 
 date and return date for each film.
+
+
+ADDITION 1:
+==========================
+Now the front-end is to be implemented using angularJs and optionally CSS.
+At this point you can be creative and implement the front end that you like the most 
+for the webapp. Just try to experiment with aspects of the technologies.
+Hit: imagine first a feature that you will appriciate in the website, then try to think
+how to implement it.
+
+
+ADDITON 2:
+=========================
+Expose a SOAP webservice.
+The webservice is meant to be used by an external provider that has be able to reach two SOAP functions:
+
+- Exopose the list of films that are requested from the users.
+- Provide a film from the requested-list.
+
+The provided films are not inserted directly but must be approved by the admin first.
+
 
 
 This is released as an Eclipse project with Maven so all you have to do is import and compile
